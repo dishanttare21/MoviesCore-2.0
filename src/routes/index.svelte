@@ -1,8 +1,7 @@
 <script context="module">
 	import { PUBLIC_TMDB_API_KEY } from '$env/static/public'
-	console.log(PUBLIC_TMDB_API_KEY)
+	// console.log(PUBLIC_TMDB_API_KEY)
 	export const load = async ({ fetch }) => {
-		// const API_KEY = 'c468f1a4793dde84b380dc978e620225';
 		const POPULAR_MOVIE_REQ_URL =
 			'https://api.themoviedb.org/3/movie/popular?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 		const POPULAR_TV_REQ_URL =
