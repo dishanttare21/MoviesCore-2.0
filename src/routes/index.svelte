@@ -1,14 +1,15 @@
 <script context="module">
-	import { TMDB_API_KEY } from '$env/static/private'
+	import { PUBLIC_TMDB_API_KEY } from '$env/static/public'
+	console.log(PUBLIC_TMDB_API_KEY)
 	export const load = async ({ fetch }) => {
-		const API_KEY = 'c468f1a4793dde84b380dc978e620225';
+		// const API_KEY = 'c468f1a4793dde84b380dc978e620225';
 		const POPULAR_MOVIE_REQ_URL =
-			'https://api.themoviedb.org/3/movie/popular?api_key=' + TMDB_API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/movie/popular?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 		const POPULAR_TV_REQ_URL =
-			'https://api.themoviedb.org/3/tv/popular?api_key=' + TMDB_API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/tv/popular?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 
 		const NOW_PLAYING_REQ_URL =
-			'https://api.themoviedb.org/3/movie/top_rated?api_key=' + TMDB_API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/movie/top_rated?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 
 		
 		const [PopularMovieRes, PopularTVRes, NowPlayingRes] = await Promise.all([
@@ -20,7 +21,7 @@
 		const popularMovieData = await PopularMovieRes.json();
 
 		const popularTVData = await PopularTVRes.json();
-		console.log(popularTVData)
+		// console.log(popularTVData)
 		const nowPlayingData = await NowPlayingRes.json();
 
 		// console.log(nowPlayingData);

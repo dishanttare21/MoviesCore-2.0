@@ -1,13 +1,13 @@
 <script context="module">
-	import { TMDB_API_KEY } from '$env/static/private'
+	import { PUBLIC_TMDB_API_KEY } from '$env/static/public'
 	const API_KEY = 'c468f1a4793dde84b380dc978e620225';
 	export const load = async ({ fetch, params }) => {
 		// console.log(params.id)
-		const MOVIE_REQ_URL = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${params.id}&page=1&include_adult=false`;
+		const MOVIE_REQ_URL = `https://api.themoviedb.org/3/search/multi?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US&query=${params.id}&page=1&include_adult=false`;
 
 		const res = await fetch(MOVIE_REQ_URL);
 		const data = await res.json();
-		console.log(data);
+		// console.log(data);
 		if (res.ok) {
 			return {
 				props: { searchedMovie: data.results, query: params.id }

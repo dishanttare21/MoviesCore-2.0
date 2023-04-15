@@ -1,14 +1,13 @@
 <script context="module">
-	
 
-	const API_KEY = 'c468f1a4793dde84b380dc978e620225';
+	import { PUBLIC_TMDB_API_KEY } from '$env/static/public'
 
 	export const load = async ({ fetch }) => {
 		const POPULAR_REQ_URL =
-			'https://api.themoviedb.org/3/tv/popular?api_key=' + API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/tv/popular?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 		
 		const TOP_RATED_REQ_URL =
-			'https://api.themoviedb.org/3/tv/top_rated?api_key=' + API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/tv/top_rated?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 
 
 		const [popular_res, top_rated_res] = await Promise.all([

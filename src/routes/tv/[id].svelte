@@ -1,12 +1,12 @@
 <script context="module">
 	import { LoadingStore } from '../../stores';
 	let loading = false;
-	const API_KEY = 'c468f1a4793dde84b380dc978e620225';
+	import { PUBLIC_TMDB_API_KEY } from '$env/static/public'
 
 	export const load = async ({ fetch, params }) => {
 		loading = true;
 		console.log(params.id);
-		const TV_REQ_URL = `https://api.themoviedb.org/3/tv/${params.id}?api_key=${API_KEY}&language=en-US`;
+		const TV_REQ_URL = `https://api.themoviedb.org/3/tv/${params.id}?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US`;
 		const RECOMMENDED_URL = `http://127.0.0.1:5000/recommend/${params.id}`;
 		const MOVIE_VIDEOS_URL = `https://api.themoviedb.org/3/tv/${params.id}/videos?api_key=c468f1a4793dde84b380dc978e620225&language=en-US`;
 		const MOVIE_IMAGES_URL = `https://api.themoviedb.org/3/tv/${params.id}/images?api_key=c468f1a4793dde84b380dc978e620225&language=en-US`;
@@ -29,7 +29,7 @@
 
 			//movie details
 			const movieDetails = await movieDetailsResponse.json();
-            console.log(movieDetails)
+            // console.log(movieDetails)
 
 			//recommended mmovies
 			const recommendedData = await recommendedResponse.json();
@@ -42,7 +42,7 @@
 				return movie.type === 'Trailer';
 			});
 			// movieVideos = movieVideos
-			console.log(movieVideos);
+			// console.log(movieVideos);
 
 			//movie images(posters and backdrops)
 			const movieImagesData = await movieImagesResponse.json();

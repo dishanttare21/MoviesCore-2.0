@@ -1,12 +1,12 @@
 <script context="module">
-	import { TMDB_API_KEY } from '$env/static/private'
+	import { PUBLIC_TMDB_API_KEY } from '$env/static/public'
 
 	export const load = async ({ fetch }) => {
 		const NOW_PLAYING_REQ_URL =
-			'https://api.themoviedb.org/3/movie/now_playing?api_key=' + TMDB_API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/movie/now_playing?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 		
 		const UPCOMING_REQ_URL =
-			'https://api.themoviedb.org/3/movie/upcoming?api_key=' + TMDB_API_KEY + '&language=en-US&page=1';
+			'https://api.themoviedb.org/3/movie/upcoming?api_key=' + PUBLIC_TMDB_API_KEY + '&language=en-US&page=1';
 
 
 		const [now_playing_res, upcoming_res] = await Promise.all([

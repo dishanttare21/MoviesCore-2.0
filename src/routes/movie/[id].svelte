@@ -1,16 +1,16 @@
 <script context="module">
 	import { LoadingStore } from '../../stores';
 	let loading = false;
-	import { DEPLOYED_BASE_URL,TMDB_API_KEY } from '$env/static/private'
+	import { PUBLIC_DEPLOYED_BASE_URL, PUBLIC_TMDB_API_KEY } from '$env/static/public'
 
 	export const load = async ({ fetch, params }) => {
 		loading = true;
 		console.log(params.id);
-		const MOVIE_REQ_URL = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${TMDB_API_KEY}&language=en-US`;
-		const RECOMMENDED_URL = `${DEPLOYED_BASE_URL}/recommend/${params.id}`;
-		const MOVIE_VIDEOS_URL = `https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${TMDB_API_KEY}&language=en-US`;
-		const MOVIE_IMAGES_URL = `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${TMDB_API_KEY}&language=en-US`;
-		const MOVIE_REVIEWS_URL = `https://api.themoviedb.org/3/movie/${params.id}/reviews?api_key=${TMDB_API_KEY}&language=en-US&page=1`;
+		const MOVIE_REQ_URL = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US`;
+		const RECOMMENDED_URL = `${PUBLIC_DEPLOYED_BASE_URL}/recommend/${params.id}`;
+		const MOVIE_VIDEOS_URL = `https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US`;
+		const MOVIE_IMAGES_URL = `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US`;
+		const MOVIE_REVIEWS_URL = `https://api.themoviedb.org/3/movie/${params.id}/reviews?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US&page=1`;
 		try {
 			const [
 				movieDetailsResponse,
@@ -41,7 +41,7 @@
 				return movie.type === 'Trailer';
 			});
 			// movieVideos = movieVideos
-			console.log(movieVideos);
+			// console.log(movieVideos);
 
 			//movie images(posters and backdrops)
 			const movieImagesData = await movieImagesResponse.json();
@@ -53,7 +53,7 @@
 			//movie reviews
 			const movieReviewsData = await movieReviewsResponse.json();
 			const movieReviews = await movieReviewsData.results.slice(0, 3);
-			console.log(movieReviews);
+			// console.log(movieReviews);
 
 			// console.log('hi'+movieReviewsResponse.ok)
 			// const movieDetailsResponse = await movieDetailsReq.json();
