@@ -1,0 +1,17 @@
+:root {
+    --background-clr: hsl(204, 8%, 99%);
+    --background-clr-light: hsl(0, 0%, 99%);
+    --text-clr: #2C3333;
+    --text-clr-lighter: hsl(180, 7%, 30%);
+
+    --accent-clr: #032541;
+    --accent-clr-lighter: hsl(207, 91%, 22%);
+
+
+    --color-lightest: hsl(0deg, 0%, 100%);
+    --color-lighter: hsl(0deg, 0%, 80%);
+    --color-light: hsl(0deg, 0%, 60%);
+    --color-strong: hsl(0deg, 0%, 40%);
+    --color-stronger: hsl(0deg, 0%, 20%);
+    --color-strongest: hsl(0deg, 0%, 0%);
+}
