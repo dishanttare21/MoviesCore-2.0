@@ -33,4 +33,11 @@
 		grid-template-columns: repeat(5, 1fr);
 		gap: 1em 2em;
 	}
+
+	@media(max-width: 800px){
+		.recommended-movies{
+			display: flex;
+			overflow: auto;
+		}
+	}
 </style>

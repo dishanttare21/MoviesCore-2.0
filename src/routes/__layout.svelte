@@ -1,5 +1,6 @@
 <script>
     import Navbar from "../components/Navbar.svelte";
+	import Banner from "../components/Banner.svelte";
 	import { ThemeStore, LoadingStore } from '../stores.js';
 	console.log($LoadingStore)
 </script>
@@ -9,7 +10,7 @@
 	$ThemeStore}/> <link rel="stylesheet" href={`/theme/${$ThemeStore}.css`} />
     <title>MoviesCore 2</title>
 </svelte:head>
-
+<Banner />
 <Navbar />
 <slot />
 
@@ -58,6 +59,12 @@
 		font-size: 1.3rem;
 		color: var(--text-clr);
 		margin-right: 0.2em;
+	}
+
+	@media (max-width: 800px) {
+		:global(html) {
+			font-size: 11.5px;
+		}
 	}
 
 	@media (max-width: 400px) {

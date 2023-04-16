@@ -1,7 +1,7 @@
 <script context="module">
 	import { LoadingStore } from '../../stores';
 	let loading = false;
-	import { PUBLIC_DEPLOYED_BASE_URL, PUBLIC_TMDB_API_KEY } from '$env/static/public'
+	import { PUBLIC_DEPLOYED_BASE_URL, PUBLIC_TMDB_API_KEY } from '$env/static/public';
 
 	export const load = async ({ fetch, params }) => {
 		loading = true;
@@ -128,7 +128,12 @@
 		>
 			<div class="movie-details-bottom">
 				<div class="movie-details-bottom-poster">
-					<img src={image + movieDetails.poster_path} alt="" class="poster-image" />
+					<div class="poster-image-container">
+						<img src={image + movieDetails.poster_path} alt="" class="poster-image" />
+					</div>
+					<div class="backdrop-image-container">
+						<img src={image + movieDetails.backdrop_path} alt="" class="backdrop-image" />
+					</div>
 				</div>
 				<div class="movie-details-bottom-text">
 					<h3 class="movie-title">{movieDetails.title}</h3>
@@ -180,7 +185,7 @@
 		<Recommended {recommended} />
 	</section>
 
-	<section>
+	<section class="reviews-section">
 		<ul class="reviews">
 			{#each movieReviews as review}
 				<li class="review">
@@ -226,12 +231,18 @@
 		max-height: 30vh;
 		/* filter: blur(2px); */
 	}
+	.backdrop-image-container {
+		display: none;
+		width: 100%;
+		/* border: 2px solid red; */
+	}
 	.backdrop-image {
-		/* width: 100%; */
+		width: 100%;
 		/* height: 100%; */
 		border-radius: 5px;
-		max-width: 40rem;
-		margin: auto;
+		/* max-width: 40rem; */
+		/* margin: auto; */
+		/* display: none; */
 		/* max-width: 18rem; */
 	}
 	.movie-details-bottom {
@@ -288,6 +299,7 @@
 	.trailers > div {
 		/* width: 300px; */
 	}
+
 	.reviews {
 		/* border: 2px solid red; */
 		margin: 0;
@@ -296,16 +308,16 @@
 		margin-bottom: 2em;
 		/* background: white; */
 	}
-	.reviews:nth-child(1){
-		border-top: 1px solid rgba(0,0,0,0.1);
+	.reviews:nth-child(1) {
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
-	.review{
+	.review {
 		/* border: 2px solid blue; */
 		padding-bottom: 1em;
 		color: var(--text-clr-lighter);
-		border-bottom: 1px solid rgba(0,0,0,0.1);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
-	.review-top{
+	.review-top {
 		/* border: 2px solid green; */
 		display: flex;
 		align-items: center;
@@ -327,11 +339,12 @@
 		font-size: 0.9rem;
 		padding-left: 0.5rem;
 	}
-	.readmore-btn{
+	.readmore-btn {
 		border: none;
 		background: none;
 		cursor: pointer;
 		color: inherit;
+		font-size: 0.9em;
 	}
 	.other-details {
 		width: 80%;
@@ -353,5 +366,43 @@
 	}
 	.recommended-section .icon {
 		font-size: 3rem;
+	}
+
+	@media (max-width: 800px) {
+		.movie-details {
+			width: 95%;
+			margin: auto;
+			/* margin-top: 2em; */
+			/* border: 2px solid var(--text-clr); */
+			border-radius: 5px;
+			padding: 1em 0;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+		}
+		.movie-details > * {
+			width: 98%;
+		}
+		.movie-details-bottom {
+			flex-direction: column;
+			width: 98%;
+		}
+		.movie-details-bottom > * {
+			width: 98%;
+		}
+		.movie-details-bottom-poster {
+			max-width: none;
+		}
+		.poster-image-container {
+			display: none;
+		}
+		.backdrop-image-container {
+			display: flex;
+		}
+		.recommended-section{
+			width: 90%;
+		}
+		.reviews-section {
+			/* border: 2px solid blue; */
+			width: 90%;
+		}
 	}
 </style>
