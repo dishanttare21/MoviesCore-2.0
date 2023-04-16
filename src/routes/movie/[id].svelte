@@ -6,6 +6,7 @@
 	export const load = async ({ fetch, params }) => {
 		loading = true;
 		console.log(params.id);
+		
 		const MOVIE_REQ_URL = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US`;
 		const RECOMMENDED_URL = `${PUBLIC_DEPLOYED_BASE_URL}/recommend/${params.id}`;
 		const MOVIE_VIDEOS_URL = `https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${PUBLIC_TMDB_API_KEY}&language=en-US`;
@@ -99,6 +100,7 @@
 
 	export let movieDetails, recommended, movieVideos, movieImages, movieReviews;
 	const image = 'http://image.tmdb.org/t/p/original/';
+	// console.log(movieDetails)
 
 	let open = false;
 
@@ -108,7 +110,65 @@
 	const closeModal = () => {
 		open = false;
 	};
+
 	// import YouTube from 'svelte-youtube';
+	// These values are bound to properties of the video
+	let time = 0;
+	let duration;
+	let paused = true;
+
+	let showControls = true;
+	let showControlsTimeout;
+
+	// Used to track time of last mouse down event
+	let lastMouseDown;
+
+	function handleMove(e) {
+		// Make the controls visible, but fade out after
+		// 2.5 seconds of inactivity
+		clearTimeout(showControlsTimeout);
+		showControlsTimeout = setTimeout(() => (showControls = false), 2500);
+		showControls = true;
+
+		if (!duration) return; // video not loaded yet
+		if (e.type !== 'touchmove' && !(e.buttons & 1)) return; // mouse not down
+
+		const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+		const { left, right } = this.getBoundingClientRect();
+		time = (duration * (clientX - left)) / (right - left);
+	}
+
+	// we can't rely on the built-in click event, because it fires
+	// after a drag — we have to listen for clicks ourselves
+	function handleMousedown(e) {
+		lastMouseDown = new Date();
+	}
+
+	function handleMouseup(e) {
+		if (new Date() - lastMouseDown < 300) {
+			if (paused) e.target.play();
+			else e.target.pause();
+		}
+	}
+
+	function format(seconds) {
+		if (isNaN(seconds)) return '...';
+
+		const minutes = Math.floor(seconds / 60);
+		seconds = Math.floor(seconds % 60);
+		if (seconds < 10) seconds = '0' + seconds;
+
+		return `${minutes}:${seconds}`;
+	}
+
+	import VideoPlayer from 'svelte-video-player-kit';
+
+	const poster = 'https://www.server.com/poster.jpg';
+	const source = [
+		'https://www.server.com/video.webm',
+		'https://www.server.com/video.mp4',
+		'https://www.server.com/video.ogv'
+	];
 </script>
 
 <svelte:head>
@@ -165,6 +225,25 @@
 			<img src={image + movieDetails.backdrop_path} alt="" class="backdrop-image" />
 		</div> -->
 			<div class="movie-posters">
+				<!-- <video
+					poster="https://sveltejs.github.io/assets/caminandes-llamigos.jpg"
+					src="https://2embed.org/embed/movie?imdb=594767"
+					on:mousemove={handleMove}
+					on:touchmove|preventDefault={handleMove}
+					on:mousedown={handleMousedown}
+					on:mouseup={handleMouseup}
+				>
+					<track kind="captions" />
+				</video> -->
+				<!-- <VideoPlayer poster="https://sveltejs.github.io/assets/caminandes-llamigos.jpg" source="https://2embed.org/embed/movie?imdb=tt6806448" /> -->
+				<!-- <iframe
+					title="Movie"
+					id="iframe"
+					src="https://2embed.org/embed/movie?imdb=tt14874302"
+					width="100%"
+					height="100%"
+					frameborder="0"
+				/> -->
 				<!-- {#each movieImagesBackdrops as backdrop}
 				<div>
 					<img src={image+backdrop.file_path} alt="">
@@ -180,6 +259,10 @@
 			</div> -->
 		</section>
 	{/if}
+
+	<section class="watch-section">
+		To watch click <a href={`https://2embed.org/embed/movie?tmdb=${movieDetails.id}`} target="_blank">Here</a>
+	</section>
 
 	<section class="recommended-section">
 		<Recommended {recommended} />
@@ -299,6 +382,17 @@
 	.trailers > div {
 		/* width: 300px; */
 	}
+	.watch-section{
+		text-align: center;
+	}
+	.watch-section a{
+		text-decoration: none;
+		color: var(--text-clr-lighter);
+	}
+	.watch-section a:hover{
+		
+		text-decoration: underline 2px;
+	}
 
 	.reviews {
 		/* border: 2px solid red; */
@@ -397,7 +491,7 @@
 		.backdrop-image-container {
 			display: flex;
 		}
-		.recommended-section{
+		.recommended-section {
 			width: 90%;
 		}
 		.reviews-section {

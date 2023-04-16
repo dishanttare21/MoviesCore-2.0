@@ -25,6 +25,7 @@
 	"type": "module",
 	"dependencies": {
 		"@iconify/json": "^2.1.127",
+		"svelte-video-player-kit": "^1.2.8",
 		"svelte-youtube": "^0.0.2"
 	}
 }
