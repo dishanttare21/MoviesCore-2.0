@@ -101,14 +101,6 @@
 		}
 	}
 
-	@media (max-width: 600px) {
-		.popular-movies {
-			display: flex;
-			overflow: auto;
-			/* grid-template-columns: repeat(3, 1fr); */
-		}
-	}
-
 	@media (max-width: 450px) {
 		.popular-movies {
 			grid-template-columns: repeat(2, 1fr);

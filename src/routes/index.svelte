@@ -65,4 +65,11 @@
 		/* padding-bottom: 2em; */
 		/* background-color: var(--background-clr-light); */
 	}
+
+	@media(max-width: 600px){
+		section{
+			width: 95%;
+			height: auto;
+		}
+	}
 </style>

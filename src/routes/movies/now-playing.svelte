@@ -41,11 +41,15 @@
 	.movies-container {
 		/* border: 2px solid red; */
 		width: 85%;
-		margin: auto;
-		display: flex;
+		margin: 1em auto;
 	}
 	.filters {
 		border: 2px solid blue;
+	}
 
+	@media(max-width: 800px){
+		.movies-container{
+			width: 100%;
+		}
 	}
 </style>

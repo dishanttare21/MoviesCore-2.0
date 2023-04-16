@@ -76,7 +76,9 @@
 		display: flex;
 		margin: auto;
 		padding: 0;
+		margin: 0;
 		align-items: center;
+		margin: auto;
 		/* height: 7vh; */
 		/* color: #fff; */
 
@@ -207,5 +209,27 @@
 		width: 1px;
 		height: 1px;
 		overflow: hidden;
+	}
+
+	@media(max-width: 600px){
+		nav{
+			flex-direction: column;
+			width: 100%;
+			align-items: center;
+		}
+		.navbar-text{
+			width: 100%;
+			/* background-color: rgb(248, 248, 248); */
+			text-align: center;
+			padding: 0.4em 0;
+		}
+		.navbar-links {
+			font-size: 0.9rem;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			width: 60%;
+			align-items: center;
+	}
 	}
 </style>

@@ -48,5 +48,17 @@
 		grid-template-columns: repeat(6, 1fr);
 		gap: 1em 2em;
 		/* border: 2px solid red; */
+		
+	}
+	@media(max-width: 800px){
+		section{
+			width: 95%;
+			display: flex;
+			justify-content: center;
+		}
+		.searched-movies{
+			grid-template-columns: repeat(3, 1fr);
+			width: 95%;
+		}
 	}
 </style>

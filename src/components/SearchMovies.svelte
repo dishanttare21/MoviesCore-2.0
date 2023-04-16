@@ -100,14 +100,16 @@
         color: #fff;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
         .search{
             width: 100%;
+            padding: 0;
         }
         .search input{
             min-width: none;
             width: 100%;
-            border: 2px solid red;
+            /* border: 2px solid red; */
+            /* padding: 0.2 ; */
         }
     }
 </style>

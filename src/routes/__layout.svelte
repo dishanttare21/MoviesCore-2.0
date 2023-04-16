@@ -21,6 +21,7 @@
 		/* font-family: 'Source Sans Pro', sans-serif; */
         margin: 0;
         padding: 0;
+		box-sizing: border-box;
 		background-color: var(--background-clr);
 		color: var(--text-clr);
 		/* background: va; */
